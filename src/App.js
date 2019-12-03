@@ -9,6 +9,12 @@ const list = [
     definition: "expressing contempt or disapproval"}
 ];
 
+const FLASHCARD = "flashcard";
+const DEFAULT_STEP = "flashcard";
+const ADD_WORD = "add";
+const LIST_WORDS = "list";
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +24,7 @@ class App extends Component {
       hideMeaning: true,
       addWordName: '',
       addWordDef: '',
+      currentStep: DEFAULT_STEP,
     }
 
     this.getNextWord = this.getNextWord.bind(this);
@@ -26,6 +33,8 @@ class App extends Component {
     this.nameOnChange = this.nameOnChange.bind(this);
     this.defOnChange = this.defOnChange.bind(this);
     this.addWord = this.addWord.bind(this);
+    this.setStep = this.setStep.bind(this);
+    this.showDefinition = this.showDefinition.bind(this);
   }
 
   getNextWord() {
@@ -44,7 +53,6 @@ class App extends Component {
   getPreviousWord() {
     const previousIndex = this.state.index-1;
     const words = this.state.words;
-    const len = words.length;
     if(previousIndex <= 0) {
       this.setState({ index: 0, hideMeaning: true});
     } else {
@@ -65,6 +73,14 @@ class App extends Component {
     this.setState({ addWordDef: event.target.value });
   }
 
+  hideStep(step) {
+    return !(step === this.state.currentStep);
+  }
+
+  setStep(step) {
+    this.setState({currentStep: step});
+  }
+
   addWord() {
     const newWord = {
       name: this.state.addWordName,
@@ -81,29 +97,31 @@ class App extends Component {
 
     return (
       <div>
-      <div className="navigation">
-        <nav>
-          <a href="/">Add Word</a>
-          |<a href="">Test</a>
-          |<a href="">Word List</a>
-        </nav>
-      </div>
-        <div>Word: {words[index].name}</div>
-        <Meaning definition={words[index].definition}
-          hidden={hidden} onClick={this.showDefinition}
-        />
-        <div className="interactions">
-          <button onClick={this.getPreviousWord}>Prev</button>
-          <button onClick={this.getNextWord}>Next</button>
+        <div className="navigation">
+          <nav>
+            <button onClick={() => this.setStep(ADD_WORD)}>Add Word</button>
+            |<button href="" onClick={() => this.setStep(FLASHCARD)}>Flashcards</button>
+            |<button href="" onClick={() => this.setStep(LIST_WORDS)}>Word List</button>
+          </nav>
         </div>
-        <div>
-          <AddWord onClick={this.addWord}
-            nameOnChange={this.nameOnChange}
-            defOnChange={this.defOnChange}
-            name={this.state.addWordName}
-            def={this.state.addWordDef}
-          />
-        </div>
+          <div>
+            <AddWord onClick={this.addWord}
+              nameOnChange={this.nameOnChange}
+              defOnChange={this.defOnChange}
+              name={this.state.addWordName}
+              def={this.state.addWordDef}
+              hideStep={this.hideStep(ADD_WORD)}
+            />
+          </div>
+          <div>
+            <Flashcard getPreviousWord={this.getPreviousWord}
+              getNextWord={this.getNextWord}
+              word={words[index]}
+              hideStep={this.hideStep(FLASHCARD)}
+              hideMeaning={hidden}
+              showDefinition={this.showDefinition}
+            />
+          </div>
       </div>
     );
   }
@@ -121,20 +139,48 @@ function Meaning({definition, hidden, onClick}) {
   );
 }
 
-function AddWord({onClick, nameOnChange, defOnChange, name, def}) {
+function AddWord({onClick, nameOnChange, defOnChange, name, def, hideStep}) {
   return (
-    <div>
-      Name:<input type="text"
-        onChange={nameOnChange}
-        value={name}
-      ></input>
-      <br />
-      Definition:<textarea
-        onChange={defOnChange}
-        value={def}
-      ></textarea>
-      <br />
-      <button onClick={onClick}>Create</button>
+    <div className="addWord">
+      {hideStep
+        ? <div></div>
+        :
+        <div>
+          Name:<input type="text"
+            onChange={nameOnChange}
+            value={name}
+          ></input>
+          <br />
+          Definition:<textarea
+            onChange={defOnChange}
+            value={def}
+          ></textarea>
+          <br />
+          <button onClick={onClick}>Create</button>
+        </div>
+      }
+    </div>
+  );
+}
+
+function Flashcard({getPreviousWord, getNextWord,
+  word, hideStep, hideMeaning, showDefinition}) {
+  return (
+    <div class="flashcard">
+    {hideStep
+      ? <div></div>
+      :
+        <div>
+          <div>Word: {word.name}</div>
+          <Meaning definition={word.definition}
+            hidden={hideMeaning} onClick={showDefinition}
+          />
+          <div className="interactions">
+            <button onClick={getPreviousWord}>Prev</button>
+            <button onClick={getNextWord}>Next</button>
+          </div>
+      </div>
+    }
     </div>
   );
 }
