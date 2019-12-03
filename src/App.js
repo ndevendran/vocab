@@ -16,6 +16,8 @@ class App extends Component {
       words: list,
       index: 0,
       hideMeaning: true,
+      addWordName: '',
+      addWordDef: '',
     }
 
     this.getNextWord = this.getNextWord.bind(this);
@@ -69,7 +71,7 @@ class App extends Component {
       definition: this.state.addWordDef
     }
     const list = [...this.state.words, newWord];
-    this.setState({words: list});
+    this.setState({words: list, addWordName: '', addWordDef: ''});
   }
 
   render() {
@@ -79,6 +81,13 @@ class App extends Component {
 
     return (
       <div>
+      <div className="navigation">
+        <nav>
+          <a href="/">Add Word</a>
+          |<a href="">Test</a>
+          |<a href="">Word List</a>
+        </nav>
+      </div>
         <div>Word: {words[index].name}</div>
         <Meaning definition={words[index].definition}
           hidden={hidden} onClick={this.showDefinition}
@@ -91,6 +100,8 @@ class App extends Component {
           <AddWord onClick={this.addWord}
             nameOnChange={this.nameOnChange}
             defOnChange={this.defOnChange}
+            name={this.state.addWordName}
+            def={this.state.addWordDef}
           />
         </div>
       </div>
@@ -110,20 +121,26 @@ function Meaning({definition, hidden, onClick}) {
   );
 }
 
-function AddWord({onClick, nameOnChange, defOnChange}) {
+function AddWord({onClick, nameOnChange, defOnChange, name, def}) {
   return (
     <div>
       Name:<input type="text"
         onChange={nameOnChange}
+        value={name}
       ></input>
       <br />
       Definition:<textarea
         onChange={defOnChange}
+        value={def}
       ></textarea>
       <br />
       <button onClick={onClick}>Create</button>
     </div>
   );
 }
+
+//TO DO: Component Composition for simple navigation
+//TO DO: Component Composition for confirmation
+//TO DO: Component Composition for loading
 
 export default App;
