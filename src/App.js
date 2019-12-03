@@ -21,6 +21,9 @@ class App extends Component {
     this.getNextWord = this.getNextWord.bind(this);
     this.getPreviousWord = this.getPreviousWord.bind(this);
     this.showDefinition = this.showDefinition.bind(this);
+    this.nameOnChange = this.nameOnChange.bind(this);
+    this.defOnChange = this.defOnChange.bind(this);
+    this.addWord = this.addWord.bind(this);
   }
 
   getNextWord() {
@@ -52,6 +55,23 @@ class App extends Component {
     this.setState({hideMeaning: hideMeaning});
   }
 
+  nameOnChange(event) {
+    this.setState({ addWordName: event.target.value });
+  }
+
+  defOnChange(event) {
+    this.setState({ addWordDef: event.target.value });
+  }
+
+  addWord() {
+    const newWord = {
+      name: this.state.addWordName,
+      definition: this.state.addWordDef
+    }
+    const list = [...this.state.words, newWord];
+    this.setState({words: list});
+  }
+
   render() {
     const words = this.state.words;
     const index = this.state.index;
@@ -67,6 +87,12 @@ class App extends Component {
           <button onClick={this.getPreviousWord}>Prev</button>
           <button onClick={this.getNextWord}>Next</button>
         </div>
+        <div>
+          <AddWord onClick={this.addWord}
+            nameOnChange={this.nameOnChange}
+            defOnChange={this.defOnChange}
+          />
+        </div>
       </div>
     );
   }
@@ -81,7 +107,23 @@ function Meaning({definition, hidden, onClick}) {
        : <span>{definition}</span>
       }
     </div>
-  )
+  );
+}
+
+function AddWord({onClick, nameOnChange, defOnChange}) {
+  return (
+    <div>
+      Name:<input type="text"
+        onChange={nameOnChange}
+      ></input>
+      <br />
+      Definition:<textarea
+        onChange={defOnChange}
+      ></textarea>
+      <br />
+      <button onClick={onClick}>Create</button>
+    </div>
+  );
 }
 
 export default App;
