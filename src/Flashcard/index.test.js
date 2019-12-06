@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Flashcard from '../Flashcard';
+import Meaning from '../Meaning';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -51,5 +52,18 @@ describe('Flashcard', () => {
     };
     const wrapper = shallow(<Flashcard {...customProps} />);
     expect(wrapper.find('.word').length).toBe(0);
+  });
+
+  it('Contains a Meaning component', () => {
+    const customProps = {
+      words: [{"name": "test", "definition": "custom test"}],
+      hideStep: false,
+      hideMeaning: false,
+      index: 0
+    };
+    const wrapper = shallow(<Flashcard {...customProps} />);
+
+    const word = customProps.words[customProps.index];
+    expect(wrapper.find(Meaning)).toHaveLength(1);
   });
 });

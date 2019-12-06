@@ -5,7 +5,7 @@ function Meaning({definition, hidden, onClick}) {
   return (
     <div>
       {hidden
-       ? <Button variant="info" onClick={onClick}>Show Definition</Button>
+       ? <Button className="showDefinition" variant="info" onClick={onClick}>Show Definition</Button>
        : <span>{definition}</span>
       }
     </div>

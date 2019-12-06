@@ -4,6 +4,10 @@ exports[`WordList has a valid snapshot 1`] = `
 <div
   className="wordList"
 >
-  <div />
+  <div>
+    <div>
+      test
+    </div>
+  </div>
 </div>
 `;
