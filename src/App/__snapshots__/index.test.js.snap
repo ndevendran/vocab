@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App has a valid snapshot 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="navigation nav nav-tabs"
+    onKeyDown={[Function]}
+  >
+    <div
+      className="nav-item"
+      onClick={[Function]}
+    >
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+      >
+        Add Word
+      </a>
+    </div>
+    <div
+      className="nav-item"
+      href=""
+      onClick={[Function]}
+    >
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+      >
+        Flashcards
+      </a>
+    </div>
+    <div
+      className="nav-item"
+      href=""
+      onClick={[Function]}
+    >
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+      >
+        Word List
+      </a>
+    </div>
+  </div>
+  <div>
+    <div
+      className="addWord"
+    >
+      <div />
+    </div>
+  </div>
+  <div>
+    <div
+      className="flashcard"
+    >
+      <div>
+        <div
+          className="word"
+        >
+          Word: 
+          malevolent
+        </div>
+        <div>
+          <button
+            className="btn btn-info"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Show Definition
+          </button>
+        </div>
+        <div
+          className="interactions"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="wordList"
+    >
+      <div />
+    </div>
+  </div>
+</div>
+`;

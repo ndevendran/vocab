@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Meaning has valid snapshot 1`] = `
+<div>
+  <span>
+    test
+  </span>
+</div>
+`;

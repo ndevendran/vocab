@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddWord snapshot test 1`] = `
+<div
+  className="addWord"
+>
+  <div>
+    <div
+      className="mb-3 wordInput input-group"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Name
+        </span>
+      </div>
+      <input
+        className="form-control"
+        onChange={[Function]}
+        value=""
+      />
+    </div>
+    <br />
+    <div
+      className="definitionInput input-group"
+    >
+      <div
+        className="input-group-prepend"
+      >
+        <span
+          className="input-group-text"
+        >
+          Definition
+        </span>
+      </div>
+      <textarea
+        className="form-control"
+        onChange={[Function]}
+        value=""
+      />
+    </div>
+    <br />
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Add Word
+    </button>
+  </div>
+</div>
+`;
