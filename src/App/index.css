@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+  font-size: 100%;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.interactions {
+  margin: auto;
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5%;
+}
+
+.navigation {
+  padding-top: 2.5%;
+  margin: auto;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.word {
+  margin-bottom: 2.5%;
+  margin-top: 2.5%;
+}
+
+.wordInput {
+  width: 25% !important;
+  margin: auto;
+  margin-top: 2.5%;
+}
+
+.definitionInput {
+  width: 40% !important;
+  margin: auto;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
