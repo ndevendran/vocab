@@ -4,10 +4,24 @@ exports[`WordList has a valid snapshot 1`] = `
 <div
   className="wordList"
 >
-  <div>
-    <div>
-      test
-    </div>
-  </div>
+  <table
+    class="wordList"
+  >
+    <tr>
+      <td>
+        test
+      </td>
+      <td>
+        <button
+          className="delete btn btn-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
 </div>
 `;

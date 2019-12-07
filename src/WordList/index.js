@@ -1,17 +1,31 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
+import './index.css';
 
-export default function WordList({words, hideStep, dismiss}) {
+export default function WordList({words, hideStep, dismiss, onDelete}) {
   const list = words || [];
   return (
     <div className="wordList">
     {hideStep
       ? <div></div>
       :
-        <div>
+        <table class="wordList">
           {list.map((word) => {
-            return <div key={word.name}>{word.name}</div>
+            return (
+              <tr key={word.name}>
+                <td>{word.name}</td>
+                <td>
+                <Button variant="secondary"
+                  className="delete"
+                  onClick={() => onDelete(word.name)}
+                >
+                  Delete
+                </Button>
+                </td>
+              </tr>
+            );
           })}
-        </div>
+        </table>
     }
     </div>
   );

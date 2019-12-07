@@ -11,7 +11,8 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('WordList', () => {
   const props = {
     words: [{"name": "test", "definition": "test"}],
-    hideStep: false
+    hideStep: false,
+    onDelete: sinon.spy()
   };
 
   it('loads without crashing', () => {
@@ -29,9 +30,14 @@ describe('WordList', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('uses a single table', () => {
+    const wrapper = shallow(<WordList {...props} />);
+    expect(wrapper.find('table')).toHaveLength(1);
+  });
+
   it('has one word listed with default test props', () => {
     const wrapper = shallow(<WordList {...props} />);
-    expect(wrapper.find('div')).toHaveLength(2+props.words.length);
+    expect(wrapper.find('td')).toHaveLength(2*props.words.length);
   });
 
   it('has three words when three words in test props', () => {
@@ -44,7 +50,18 @@ describe('WordList', () => {
       hideStep: false
     };
     const wrapper = shallow(<WordList {...customProps} />);
-    expect(wrapper.find('div')).toHaveLength(2+customProps.words.length);
+    expect(wrapper.find('td')).toHaveLength(2*customProps.words.length);
   });
-  
+
+  it('has a button with the class of dismiss', () => {
+    const wrapper = shallow(<WordList {...props} />);
+    expect(wrapper.find('.delete')).toHaveLength(props.words.length);
+  });
+
+  it('has a working on delete', () => {
+    const wrapper = shallow(<WordList {...props} />);
+    wrapper.find('.delete').simulate('click');
+    expect(props.onDelete).toHaveProperty('callCount', 1);
+  });
+
 });
