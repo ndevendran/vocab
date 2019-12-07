@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
 import Meaning from '../Meaning';
+import PropTypes from 'prop-types';
+
+Button.propTypes = {
+  onClick: PropTypes.func
+};
+
+Meaning.propTypes = {
+  onClick: PropTypes.func,
+  definition: PropTypes.string,
+  hidden: PropTypes.bool
+};
 
 
 class Flashcard extends Component {

@@ -5,6 +5,7 @@ import Flashcard from '../Flashcard';
 import WordList from '../WordList';
 import {Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PropTypes from 'prop-types';
 
 const list = [
   { name: "malevolent",
@@ -18,6 +19,26 @@ const DEFAULT_STEP = "flashcard";
 const ADD_WORD = "add";
 const WORD_LIST = "list";
 
+AddWord.propTypes = {
+  onClick: PropTypes.func,
+  hideStep: PropTypes.bool
+};
+
+Flashcard.propTypes = {
+  words: PropTypes.array,
+  index: PropTypes.number,
+  hideStep: PropTypes.bool,
+  hideMeaning: PropTypes.bool
+};
+
+WordList.propTypes = {
+  words: PropTypes.array,
+  hideStep: PropTypes.bool
+};
+
+Nav.Item.propTypes = {
+  onClick: PropTypes.func
+};
 
 class App extends Component {
   constructor(props) {
