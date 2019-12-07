@@ -9,7 +9,8 @@ export default function WordList({words, hideStep, dismiss, onDelete}) {
     {hideStep
       ? <div></div>
       :
-        <table class="wordList">
+        <table className="wordList">
+          <tbody>
           {list.map((word) => {
             return (
               <tr key={word.name}>
@@ -25,6 +26,7 @@ export default function WordList({words, hideStep, dismiss, onDelete}) {
               </tr>
             );
           })}
+          </tbody>
         </table>
     }
     </div>

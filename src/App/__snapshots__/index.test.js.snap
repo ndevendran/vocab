@@ -10,6 +10,7 @@ exports[`App has a valid snapshot 1`] = `
   >
     <div
       className="nav-item"
+      id="addWord"
       onClick={[Function]}
     >
       <a
@@ -26,6 +27,7 @@ exports[`App has a valid snapshot 1`] = `
     <div
       className="nav-item"
       href=""
+      id="flashcards"
       onClick={[Function]}
     >
       <a
@@ -42,6 +44,7 @@ exports[`App has a valid snapshot 1`] = `
     <div
       className="nav-item"
       href=""
+      id="wordList"
       onClick={[Function]}
     >
       <a
@@ -56,13 +59,7 @@ exports[`App has a valid snapshot 1`] = `
       </a>
     </div>
   </div>
-  <div>
-    <div
-      className="addWord"
-    >
-      <div />
-    </div>
-  </div>
+  <div />
   <div>
     <div
       className="flashcard"
@@ -107,12 +104,6 @@ exports[`App has a valid snapshot 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="wordList"
-    >
-      <div />
-    </div>
-  </div>
+  <div />
 </div>
 `;

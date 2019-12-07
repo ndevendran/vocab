@@ -44,7 +44,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      words: list,
+      words: this.props.list || list,
       index: 0,
       hideMeaning: true,
       addWordName: '',
@@ -84,27 +84,39 @@ class App extends Component {
     return (
       <div className="App">
           <Nav variant="tabs" className="navigation">
-            <Nav.Item onClick={() => this.setStep(ADD_WORD)}><Nav.Link>Add Word</Nav.Link></Nav.Item>
-            <Nav.Item href="" onClick={() => this.setStep(FLASHCARD)}><Nav.Link>Flashcards</Nav.Link></Nav.Item>
-            <Nav.Item href="" onClick={() => this.setStep(WORD_LIST)}><Nav.Link>Word List</Nav.Link></Nav.Item>
+            <Nav.Item id="addWord" onClick={() => this.setStep(ADD_WORD)}><Nav.Link>Add Word</Nav.Link></Nav.Item>
+            <Nav.Item id="flashcards" href="" onClick={() => this.setStep(FLASHCARD)}><Nav.Link>Flashcards</Nav.Link></Nav.Item>
+            <Nav.Item id="wordList" href="" onClick={() => this.setStep(WORD_LIST)}><Nav.Link>Word List</Nav.Link></Nav.Item>
           </Nav>
           <div>
-            <AddWord onClick={this.addWord}
-              hideStep={this.hideStep(ADD_WORD)}
-            />
+            { this.state.currentStep === ADD_WORD
+              ?
+              <AddWord onClick={this.addWord}
+                hideStep={this.hideStep(ADD_WORD)}
+              />
+              : null
+            }
           </div>
           <div>
-            <Flashcard
-              words={words}
-              index={index}
-              hideStep={this.hideStep(FLASHCARD)}
-              hideMeaning={hidden}
-            />
+            {this.state.currentStep === FLASHCARD
+              ?
+              <Flashcard
+                words={words}
+                index={index}
+                hideStep={this.hideStep(FLASHCARD)}
+                hideMeaning={hidden}
+              />
+              :null
+            }
           </div>
           <div>
-            <WordList hideStep={this.hideStep(WORD_LIST)}
-              words={this.state.words}
-             />
+            {this.state.currentStep === WORD_LIST
+              ?
+              <WordList hideStep={this.hideStep(WORD_LIST)}
+                words={this.state.words}
+              />
+              :null
+            }
           </div>
       </div>
     );
