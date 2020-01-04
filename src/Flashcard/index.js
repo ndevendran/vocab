@@ -19,8 +19,8 @@ class Flashcard extends Component {
     super(props);
 
     this.state = {
-      index: this.props.index,
-      hideMeaning: true
+      index: 0,
+      hideMeaning: true,
     };
 
     this.getPreviousWord = this.getPreviousWord.bind(this);
@@ -34,36 +34,35 @@ class Flashcard extends Component {
   }
 
   getNextWord() {
-    const currentIndex = this.state.index;
-    const nextIndex = currentIndex + 1;
-    const words = this.props.words;
-    const len = words.length;
-
-    if(nextIndex >= len) {
-      this.setState({index: 0, hideMeaning: true});
-    } else {
-      this.setState({index: nextIndex, hideMeaning: true});
-    }
+      this.setState((prevState) => {
+        let newIndex;
+        if((prevState.index + 1) === this.props.words.length) {
+          newIndex = 0;
+        } else {
+          newIndex = prevState.index+1;
+        }
+        return {index: newIndex, hideMeaning: true};
+      });
   }
 
   getPreviousWord() {
-    const previousIndex = this.state.index-1;
-    if(previousIndex <= 0) {
-      this.setState({ index: 0, hideMeaning: true});
-    } else {
-      this.setState({index: previousIndex, hideMeaning: true});
-    }
+    this.setState((prevState) => {
+      let newIndex;
+      if(prevState.index === 0) {
+        newIndex = this.props.words.length - 1;
+      } else {
+        newIndex = prevState.index - 1;
+      }
+      return {index: newIndex, hideMeaning: true};
+    });
   }
 
   render () {
     const hideMeaning = this.state.hideMeaning;
     const word = this.props.words[this.state.index];
-    const hideStep = this.props.hideStep;
     return (
       <div className="flashcard">
-      {hideStep
-        ? <div></div>
-        :
+
           <div>
             <div className="word">Word: {word.name}</div>
             <Meaning definition={word.definition}
@@ -74,7 +73,6 @@ class Flashcard extends Component {
               <Button variant="primary" onClick={this.getNextWord}>Next</Button>
             </div>
         </div>
-      }
       </div>
     );
   }

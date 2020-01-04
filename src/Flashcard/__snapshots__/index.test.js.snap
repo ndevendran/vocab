@@ -4,6 +4,43 @@ exports[`Flashcard snapshot is valid 1`] = `
 <div
   className="flashcard"
 >
-  <div />
+  <div>
+    <div
+      className="word"
+    >
+      Word: 
+      test
+    </div>
+    <div>
+      <button
+        className="showDefinition btn btn-info"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Show Definition
+      </button>
+    </div>
+    <div
+      className="interactions"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Prev
+      </button>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Next
+      </button>
+    </div>
+  </div>
 </div>
 `;

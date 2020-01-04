@@ -2,13 +2,10 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import './index.css';
 
-export default function WordList({words, hideStep, dismiss, onDelete}) {
+export default function WordList({words, dismiss, onDelete}) {
   const list = words || [];
   return (
     <div className="wordList">
-    {hideStep
-      ? <div></div>
-      :
         <table className="wordList">
           <tbody>
           {list.map((word) => {
@@ -28,7 +25,6 @@ export default function WordList({words, hideStep, dismiss, onDelete}) {
           })}
           </tbody>
         </table>
-    }
     </div>
   );
 }

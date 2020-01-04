@@ -13,7 +13,6 @@ describe('Flashcard', () => {
     words: [{"name": "test", "definition": "test"}],
     index: 0,
     hideMeaning: true,
-    hideStep: true
   }
 
   it('loads without crashing', () => {
@@ -35,7 +34,6 @@ describe('Flashcard', () => {
   it('renders one word when step is not hidden', () => {
     const customProps = {
       words: [{"name": "test", "definition": "custom test"}],
-      hideStep: false,
       hideMeaning: false,
       index: 0
     };
@@ -43,21 +41,10 @@ describe('Flashcard', () => {
     expect(wrapper.find('.word').length).toBe(1);
   });
 
-  it('renders no words when step is hidden', () => {
-    const customProps = {
-      words: [{"name": "test", "definition": "custom test"}],
-      hideStep: true,
-      hideMeaning: false,
-      index: 0
-    };
-    const wrapper = shallow(<Flashcard {...customProps} />);
-    expect(wrapper.find('.word').length).toBe(0);
-  });
 
   it('Contains a Meaning component', () => {
     const customProps = {
       words: [{"name": "test", "definition": "custom test"}],
-      hideStep: false,
       hideMeaning: false,
       index: 0
     };
